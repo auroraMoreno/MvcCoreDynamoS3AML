@@ -1,0 +1,55 @@
+﻿@model MvcCoreDynamoS3AML.Models.Usuario
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Usuario</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.IdUsuario)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.IdUsuario)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FechaAlta)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FechaAlta)
+        </dd>
+    </dl>
+    @if (Model.Fotos !=null)
+    {
+        <div>
+            Imagenes: 
+            <h3>Nombre: @Model.Fotos.Titulo</h3>
+            <h3>Imagen: @Model.Fotos.Imagen</h3>
+            <a asp-action="FileAWS"
+               asp-controller="Usuario"
+               asp-route-filename="@Model.Fotos.Imagen"
+               >Visualizar</a>
+        </div>
+    }
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a>Agregar Imagen</a>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,24 @@
+﻿using Amazon.DynamoDBv2.DataModel;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace MvcCoreDynamoS3AML.Models
+{
+    [DynamoDBTable("useraws")]
+    public class Usuario
+    {
+        [DynamoDBHashKey]
+        [DynamoDBProperty("iduser")]
+        public int IdUsuario { get; set; }
+        [DynamoDBProperty("nombre")]
+        public String Nombre { get; set; }
+        [DynamoDBProperty("descripcion")]
+        public String Descripcion { get; set; }
+        [DynamoDBProperty("fechaalta")]
+        public String FechaAlta { get; set; }
+        [DynamoDBProperty("fotos")]
+        public Fotos Fotos { get; set; }
+    }
+}
