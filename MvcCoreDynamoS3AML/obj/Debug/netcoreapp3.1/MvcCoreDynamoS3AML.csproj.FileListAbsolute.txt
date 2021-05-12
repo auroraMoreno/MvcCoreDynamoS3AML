@@ -115,3 +115,4 @@ C:\Users\AlumnoMCSD\Documents\AWS\MvcCoreDynamoS3AML\MvcCoreDynamoS3AML\obj\Debu
 C:\Users\AlumnoMCSD\Documents\AWS\MvcCoreDynamoS3AML\MvcCoreDynamoS3AML\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Index.cshtml.g.cs
 C:\Users\AlumnoMCSD\Documents\AWS\MvcCoreDynamoS3AML\MvcCoreDynamoS3AML\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Details.cshtml.g.cs
 C:\Users\AlumnoMCSD\Documents\AWS\MvcCoreDynamoS3AML\MvcCoreDynamoS3AML\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Create.cshtml.g.cs
+C:\Users\AlumnoMCSD\Documents\AWS\MvcCoreDynamoS3AML\MvcCoreDynamoS3AML\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Edit.cshtml.g.cs

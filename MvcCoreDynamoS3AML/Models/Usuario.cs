@@ -18,7 +18,13 @@ namespace MvcCoreDynamoS3AML.Models
         public String Descripcion { get; set; }
         [DynamoDBProperty("fechaalta")]
         public String FechaAlta { get; set; }
+        //FUNCIONA V1
         [DynamoDBProperty("fotos")]
-        public Fotos Fotos { get; set; }
+        public Foto Fotos { get; set; }
+
+        //[DynamoDBProperty("fotos")]
+        //public List<Foto> Fotos { get; set; }
+
+
     }
 }

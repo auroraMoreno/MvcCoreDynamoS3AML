@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace MvcCoreDynamoS3AML.Models
 {
-    public class Fotos
+    public class Foto
     {
         public String Titulo { get; set; }
         public String Imagen { get; set; }

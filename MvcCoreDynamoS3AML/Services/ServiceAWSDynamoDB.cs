@@ -24,6 +24,7 @@ namespace MvcCoreDynamoS3AML.Services
             await this.context.SaveAsync<Usuario>(usuario);
         }
 
+
         public async Task<List<Usuario>> GetUsuariosAsync()
         {
             var tabla = this.context.GetTargetTable<Usuario>();
@@ -40,11 +41,17 @@ namespace MvcCoreDynamoS3AML.Services
             return await this.context.LoadAsync<Usuario>(iduser);
         }
 
+
         public async Task DeleteUserAsync(int iduser)
         {
             await this.context.DeleteAsync<Usuario>(iduser);
         }
 
         //hacer método para modificar users aqui
+
+        public async Task EditUser(Usuario user) 
+        {
+            await this.context.SaveAsync<Usuario>(user);
+        }
     }
 }

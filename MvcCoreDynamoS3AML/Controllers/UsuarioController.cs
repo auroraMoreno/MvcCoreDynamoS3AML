@@ -34,6 +34,27 @@ namespace MvcCoreDynamoS3AML.Controllers
             return View(await this.serviceDynamo.FindUserAsync(idUser));
         }
 
+        //[HttpPost]
+        //public async Task<IActionResult> Details(int idUsuario, String titulo, IFormFile imagen)
+        //{
+        //    Usuario usuario = await this.serviceDynamo.FindUserAsync(idUsuario);
+        //    if (usuario.Fotos == null)
+        //    {
+        //        usuario.Fotos = new List<Foto>();
+        //    }
+        //    usuario.Fotos = new List<Foto>();
+        //    Foto foto = new Foto();
+        //    foto.Titulo = titulo;
+        //    foto.Imagen = imagen.FileName;
+        //    usuario.Fotos.Add(foto);
+        //    String path = await this.uploadHelper.UploadFileAsync(imagen, Folders.Images);
+        //    using(FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+        //    {
+        //        await this.serviceAWSS3.UploadFile(stream, imagen.FileName);
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
 
         //esto para mostrar la img: 
         public async Task<IActionResult> FileAWS(string filename)
@@ -46,7 +67,7 @@ namespace MvcCoreDynamoS3AML.Controllers
         {
             Usuario usuario = await this.serviceDynamo.FindUserAsync(idUser);
             await this.serviceDynamo.DeleteUserAsync(idUser);
-            await this.serviceAWSS3.DeleteFile(usuario.Fotos.Imagen);
+            //await this.serviceAWSS3.DeleteFile(usuario.Fotos.Imagen);
             return RedirectToAction("Index");
         }
 
@@ -55,12 +76,13 @@ namespace MvcCoreDynamoS3AML.Controllers
             return View();
         }
 
+        //FUNCIONA V1
         [HttpPost]
         public async Task<IActionResult> Create(Usuario usuario, String imagenyes1, String titulo1, IFormFile file)
         {
             if (imagenyes1 != null)
             {
-                usuario.Fotos = new Fotos();
+                usuario.Fotos = new Foto();
                 String path = await this.uploadHelper.UploadFileAsync(file, Folders.Images);
                 usuario.Fotos.Titulo = titulo1;
                 usuario.Fotos.Imagen = file.FileName;
@@ -69,14 +91,48 @@ namespace MvcCoreDynamoS3AML.Controllers
                     bool respuesta = await this.serviceAWSS3.UploadFile(stream, file.FileName);
                 }
             }
-
             await this.serviceDynamo.CreateUser(usuario);
             return RedirectToAction("Index");
         }
 
-        //aqui añadir un método que sea agregar foto 
-        //le llegará el iddel usuario (desde detalles) + el iformfile 
-        //idea: un form que tenga el id hidden, un input file
-        //al darle, se llama al upload del servicio y tal 
+
+
+        public async Task<IActionResult> Edit(int idUser)
+        {
+            return View(await this.serviceDynamo.FindUserAsync(idUser));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(Usuario usuario)
+        {
+            Usuario user = await this.serviceDynamo.FindUserAsync(usuario.IdUsuario);
+            usuario.FechaAlta = user.FechaAlta;
+            usuario.Fotos = user.Fotos;
+            await this.serviceDynamo.EditUser(usuario);
+            return RedirectToAction("Index");
+        }
+
+        //public async Task<IActionResult> AddImg(int idUser)
+        //{
+        //    Usuario user = await this.serviceDynamo.FindUserAsync(idUser);
+        //    return View(user);
+        //}
+
+        //[HttpPost]
+        //public async Task<IActionResult> AddImg(String titulo, IFormFile file, int idUser)
+        //{
+        //    Usuario usuario = await this.serviceDynamo.FindUserAsync(idUser);
+        //    Foto foto = new Foto();
+        //    foto.Titulo = titulo;
+        //    foto.Imagen = file.FileName;
+        //    usuario.Fotos.Add(foto);
+        //    String path = await this.uploadHelper.UploadFileAsync(file, Folders.Images);
+        //    using (FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read))
+        //    {
+        //        await this.serviceAWSS3.UploadFile(stream, file.FileName);
+        //    }
+        //    return RedirectToAction("Index");
+        //}
+
     }
 }
